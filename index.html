@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="referrer" content="never">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>推荐阅读生成器</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <style>
+        body {
+            background: linear-gradient(45deg, #FC466B, #3F5EFB);
+            height: 100vh;
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="tip" id="tip">🎉 复制成功</div>
+<div class="container">
+    <form>
+        <h3>微信公众号【陌尘众享】推荐阅读生成器</h3>
+        <p>写微信推送的时候需要选择推荐阅读，每次重新复制标题、封面图，然后添加超链接挺麻烦的，特此做了一个网站自动生成html代码，然后粘贴到推文里即可。</p>
+        <input type="text" id="ipt" placeholder="请粘贴推文的html代码到此处~">
+        <div id="article_bd">
+            <div class="article">
+                <div class="left">
+                    <div class="title">厉害了，它居然可以雇佣人工智能帮我做事！</div>
+                    <div class="digest">厉害了，它居然可以雇佣人工智能帮我做事！</div>
+                </div>
+                <div class="right"
+                     style="background-image: url('http://mmbiz.qpic.cn/mmbiz_jpg/HRHkghoGSqibxmOHvNfzIRNibzc6fp8mXTxK15ESSCTh6dbKDicIgrM1DYz8FiaVW1IXtrLAeXb8v8sneMYbv2DW6A/0?wx_fmt=jpeg')">
+                </div>
+            </div>
+            <div class="article">
+                <div class="left">
+                    <div class="title">厉害了，它居然可以雇佣人工智能帮我做事！</div>
+                    <div class="digest">厉害了，它居然可以雇佣人工智能帮我做事！</div>
+                </div>
+                <div class="right"
+                     style="background-image: url('http://mmbiz.qpic.cn/mmbiz_jpg/HRHkghoGSqibxmOHvNfzIRNibzc6fp8mXTxK15ESSCTh6dbKDicIgrM1DYz8FiaVW1IXtrLAeXb8v8sneMYbv2DW6A/0?wx_fmt=jpeg')">
+                </div>
+            </div>
+            <div class="article">
+                <div class="left">
+                    <div class="title">厉害了，它居然可以雇佣人工智能帮我做事！</div>
+                    <div class="digest">厉害了，它居然可以雇佣人工智能帮我做事！</div>
+                </div>
+                <div class="right"
+                     style="background-image: url('http://mmbiz.qpic.cn/mmbiz_jpg/HRHkghoGSqibxmOHvNfzIRNibzc6fp8mXTxK15ESSCTh6dbKDicIgrM1DYz8FiaVW1IXtrLAeXb8v8sneMYbv2DW6A/0?wx_fmt=jpeg')">
+                </div>
+            </div>
+        </div>
+        <div class="btn" id="refresh">
+<!--            <span class="timer" id="loading" style="display: inline-block"></span>-->
+            <span>点击此处随机生成</span>
+        </div>
+        <div class="btn btn-bottom" id="copy">
+            生成并复制 html片段 到剪切板
+        </div>
+    </form>
+
+    <div class="drops">
+        <div class="drop drop-1"></div>
+        <div class="drop drop-2"></div>
+        <div class="drop drop-3"></div>
+        <div class="drop drop-4"></div>
+        <div class="drop drop-5"></div>
+    </div>
+</div>
+<script src="https://cdn.bootcdn.net/ajax/libs/crypto-js/4.0.0/core.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/crypto-js/4.0.0/md5.js"></script>
+
+<script src="js/plugins/clipboard.min.js"></script>
+<!--<script src="js/plugins/core.min.js"></script>-->
+<!--<script src="js/plugins/md5.js"></script>-->
+<script src="js/data.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
