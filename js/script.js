@@ -169,7 +169,7 @@ function contrastData() {
         arr = arr.concat(materialData);
         // 数组去重
         arr = unique(arr)
-        materialData = arr;
+        materialData = arr.slice(0, 100);
         let lastestDate = timestampToTime(JSON.stringify(arr[0].update_time))
         localStorage.setItem('historyArticlesArr', JSON.stringify(arr))
         localStorage.setItem('historyArticlesArr_version', JSON.stringify(arr[0].update_time))
