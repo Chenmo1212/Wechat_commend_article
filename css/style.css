@@ -223,7 +223,6 @@ form input[type="button"]:active {
 }
 
 .tip {
-    width: 100px;
     right: 20px;
     top: 20px;
     color: #fff;
@@ -322,6 +321,64 @@ form input[type="button"]:active {
     left: 10px;
     transform-origin: 1px 1px;
     animation: hrhand 8s linear infinite;
+}
+
+/*bottom-menu*/
+.bottom {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+.bottom-menu {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 10px 10px 60px -8px rgba(0, 0, 0, 0.2);
+    width: 100px;
+    bottom: 0;
+    right: 20px;
+    position: relative;
+    padding: 2em;
+    margin: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-clip: padding-box;
+}
+.bottom-menu .sci {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding-left: 0;
+}
+.bottom-menu .sci li {
+    margin: 0 10px;
+    /*transform: translateY(20px);*/
+    opacity: 0.6;
+    /*transition: translateY 0.5s;*/
+    /*transition-delay: calc(0.1s * var(--i));*/
+    padding: 1em;
+    list-style: none;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 10px 10px 60px -8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+.bottom-menu .sci li.checked{
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.bottom .bottom-menu .sci li:hover {
+    opacity: 1!important;
 }
 
 @keyframes minhand {

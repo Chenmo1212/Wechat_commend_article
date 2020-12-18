@@ -1,4 +1,3 @@
-
 // 2: 历史推文获取的
 function getMaterial(url, param) {
     // 异步对象
@@ -39,7 +38,7 @@ function getRandom(n, m) {
 function getArticleHtml(obj) {
     // let imgUrl = 'http://img01.store.sogou.com/net/a/04/link?appid=100520029&url='
     let imgUrl = ''
-    let str = '<a target="_blank" href=' + obj.url + '><div class="article">\n' +
+    let str = '<a target="_blank" href=' + obj.link + '><div class="article">\n' +
         '                <div class="left">\n' +
         '                    <div class="title">' + obj.title + '</div>\n' +
         '                    <div class="digest">' + obj.digest + '</div>\n' +
@@ -50,7 +49,7 @@ function getArticleHtml(obj) {
 }
 
 function getArticleData(materialData) {
-    let indexArr = getRandom(0, 19);
+    let indexArr = getRandom(0, 99);
     let index1 = indexArr.index1
     let index2 = indexArr.index2
     let index3 = indexArr.index3
@@ -66,31 +65,75 @@ function getArticleData(materialData) {
     content = getArticleHtml(article1);
     content += getArticleHtml(article2);
     content += getArticleHtml(article3);
-    console.log(article1)
     return content;
 }
+
+function timestampToTime(timestamp) {
+    var date = new Date(timestamp * 1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+    var Y = date.getFullYear() + '-';
+    var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+    var D = date.getDate() + ' ';
+    var h = date.getHours() + ':';
+    var m = date.getMinutes() + ':';
+    var s = date.getSeconds();
+    return Y + M + D;
+}
+
+// 文件里的数据和本地的数据进行比较，选择使用最新的
+function chooseData() {
+    if (typeof(localStorage.historyArticlesArr_version) === 'undefined') {
+        localStorage.setItem('historyArticlesArr', JSON.stringify(historyArticlesArr))
+        localStorage.setItem('historyArticlesArr_version', JSON.stringify(historyArticlesArr_version))
+    } else if (historyArticlesArr_version < JSON.parse(localStorage.historyArticlesArr_version)) {
+        // 文件的数据比本地旧,使用本地的数据
+        materialData = JSON.parse(localStorage.historyArticlesArr);
+        lastestDate = timestampToTime(JSON.parse(localStorage.historyArticlesArr_version))
+    }
+}
+
+function showTip(warning, duration){
+    let timer1 = null;
+    let timer2 = null;
+    tip.className = 'tip rightIn'
+    tip.innerHTML = warning
+    clearTimeout(timer1)
+    clearTimeout(timer2)
+    timer1 = setTimeout(function () {
+        tip.className = 'tip rightOut'
+        clearTimeout(timer1)
+        timer2 = setTimeout(function () {
+            tip.className = 'tip'
+            clearTimeout(timer2)
+        }, 1000)
+    }, duration)
+}
+
+let refreshBtn = document.getElementById('refresh');
+let loading = document.getElementById('loading');
+let ipt = document.getElementById('ipt');
+let tip = document.getElementById('tip');
+let updateData = document.getElementById('updateData');
 
 // 页面加载自动获取推文数据
 // 1: 素材库获取的
 // let materialData = null;
 // 2: 历史推文获取的
 let materialData = historyArticlesArr;
+let historyArticlesArr_version = materialData[0].update_time;
+let lastestDate = timestampToTime(historyArticlesArr_version);
+chooseData()
+showTip('⏰ 数据最新日期为：' + lastestDate, 5000)
 
 let article1 = ''
 let article2 = ''
 let article3 = ''
 let code = ''
 
-// 2: 历史推文获取的
+// 1: 素材库获取的
 // let param = {"type": "news", "offset": 0, "count": 20};
 // param.sign = CryptoJS.MD5(JSON.stringify(param).replace(/\"/g, "'")).toString().toUpperCase()
 // let url = 'https://mp.chenmo1212.cn/wxapi/wxpy/material'
 // getMaterial(url, param)
-
-let refreshBtn = document.getElementById('refresh');
-let loading = document.getElementById('loading');
-let ipt = document.getElementById('ipt');
-let tip = document.getElementById('tip');
 
 // 随机产生推荐阅读文章
 refreshBtn.onclick = function () {
@@ -103,6 +146,15 @@ refreshBtn.onclick = function () {
     // }
 }
 
+updateData.onclick = function () {
+    console.log(updateData.className)
+    if (updateData.className === ''){
+        updateData.className = 'checked'
+    } else {
+        updateData.className = ''
+    }
+}
+
 // 复制到剪切板
 var clipboard = new ClipboardJS('.btn.btn-bottom', {
     text: function () {
@@ -111,19 +163,7 @@ var clipboard = new ClipboardJS('.btn.btn-bottom', {
 });
 
 clipboard.on('success', function (e) {
-    let timer1 = null;
-    let timer2 = null;
-    tip.className = 'tip rightIn'
-    clearTimeout(timer1)
-    clearTimeout(timer2)
-    timer1 = setTimeout(function (){
-        tip.className = 'tip rightOut'
-        clearTimeout(timer1)
-        timer2 = setTimeout(function (){
-            tip.className = 'tip'
-            clearTimeout(timer2)
-        }, 1000)
-    }, 3000)
+    showTip('🎉 复制成功', 3000)
     // console.log('ssss')
     // console.info('Action:', e.action);
     // console.info('Text:', e.text);
