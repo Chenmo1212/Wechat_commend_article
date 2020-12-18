@@ -156,9 +156,9 @@ function contrastData() {
     // 获取输入框中更新的数据
     let newData = ipt.value;
     // 由JSON字符串转换为JSON对象
-    newData = eval('(' + newData + ')');
+    if (newData !== '') newData = eval('(' + newData + ')');
     // 做一个简单的用户输入检查
-    if (newData.constructor !== Object || newData.app_msg_list === undefined) {
+    if (newData === '' || newData.constructor !== Object || newData.app_msg_list === undefined) {
         showTip("⚠️输入数据有误哦~", 3000);
         return
     }
@@ -183,6 +183,22 @@ function contrastData() {
     } else {
         showTip("⚠️本地数据已经很新啦", 3000);
     }
+}
+
+function clickEnter(e) {
+    var evt = window.event || e;
+    if (evt.keyCode === 13) {
+        //回车后要干的业务代码
+        if (updateMenu.className === 'checked') {
+            // 更新数据
+            contrastData()
+        } else {
+            // 随机生成推荐阅读
+            getRandomRecommendArticles();
+        }
+
+    }
+
 }
 
 let refreshBtn = document.getElementById('refresh');
@@ -219,9 +235,9 @@ updateMenu.onclick = function () {
     updateStyle();
 }
 
-// 更新数据菜单按钮
+// 更换背景按钮
 changeBgBtn.onclick = function () {
-    showTip("hahaha", 2000)
+    setTheme()
 }
 
 // 更新数据按钮
@@ -230,7 +246,7 @@ updateBtn.onclick = function () {
 }
 
 // 复制到剪切板
-var clipboard = new ClipboardJS('.btn.btn-bottom', {
+var clipboard = new ClipboardJS('.btn.btn-bottom.copy', {
     text: function () {
         if (!code) showTip('⚠️ 请先随机生成推荐阅读文章', 3000)
         return code;
