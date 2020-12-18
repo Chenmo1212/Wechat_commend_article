@@ -216,24 +216,34 @@ form input[type="button"]:active {
 .tip,
 .drop {
     background: rgba(255, 255, 255, 0.3);
-    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     border-radius: 10px;
     border-left: 1px solid rgba(255, 255, 255, 0.3);
     border-top: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 10px 10px 60px -8px rgba(0, 0, 0, 0.2);
     position: absolute;
-    -webkit-transition: all 0.2s ease;
     transition: all 0.2s ease;
 }
 
-.tip {
-    right: 20px;
+#tip-container {
+    position: fixed;
     top: 20px;
+    right: 20px;
+    z-index: 500;
+}
+
+.tip {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 10px 10px 60px -8px rgba(0, 0, 0, 0.2);
     color: #fff;
+    transition: .35s ease-in-out;
+    position: static;
+    margin-bottom: 20px;
     padding: 1em;
-    position: absolute;
-    display: none;
 }
 
 .tip.rightIn {
@@ -391,7 +401,7 @@ form input[type="button"]:active {
 }
 
 .hidden {
-    display: none!important;
+    display: none !important;
 }
 
 @keyframes minhand {
@@ -458,5 +468,21 @@ form input[type="button"]:active {
     100% {
         opacity: 0;
         -webkit-transform: translateX(100px);
+    }
+}
+
+@keyframes notify-up {
+    0% {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    10%,
+    90% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-25px);
     }
 }

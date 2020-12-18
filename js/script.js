@@ -113,13 +113,17 @@ function getRandomRecommendArticles() {
  * @param duration： 持续时间
  */
 function showTip(warning, duration) {
-    tip.className = 'tip rightIn'
-    tip.innerHTML = warning
+    let tipDiv = document.createElement("div");
+    tipDiv.className = 'tip';
+    tipDiv.innerHTML = warning;
+    tipDiv.style.animation = "notify-up " + duration / 1000 + "s cubic-bezier(0.4, 0, 0.2, 1) forwards"
+
     clearTimeout(timer)
     var timer = setTimeout(function () {
-        tip.classList.add('rightOut')
+        tipContainer.removeChild(tipDiv);
         clearTimeout(timer)
     }, duration)
+    tipContainer.appendChild(tipDiv)
 }
 
 // 更新数据时需要调整的样式
@@ -184,9 +188,11 @@ function contrastData() {
 let refreshBtn = document.getElementById('refresh');
 let copyBtn = document.getElementById('copy');
 let updateBtn = document.getElementById('update');
+let changeBgBtn = document.getElementById('changeBg');
 let loading = document.getElementById('loading');
 let ipt = document.getElementById('ipt');
 let tip = document.getElementById('tip');
+let tipContainer = document.getElementById('tip-container');
 let updateMenu = document.getElementById('updateDataMenu');
 let article_bd = document.getElementById('article_bd');
 
@@ -213,6 +219,11 @@ updateMenu.onclick = function () {
     updateStyle();
 }
 
+// 更新数据菜单按钮
+changeBgBtn.onclick = function () {
+    showTip("hahaha", 2000)
+}
+
 // 更新数据按钮
 updateBtn.onclick = function () {
     contrastData()
@@ -221,15 +232,16 @@ updateBtn.onclick = function () {
 // 复制到剪切板
 var clipboard = new ClipboardJS('.btn.btn-bottom', {
     text: function () {
+        if (!code) showTip('⚠️ 请先随机生成推荐阅读文章', 3000)
         return code;
     }
 });
 
+// http://www.clipboardjs.cn/
 clipboard.on('success', function (e) {
     showTip('🎉 复制成功', 3000)
-    // console.log('ssss')
-    // console.info('Action:', e.action);
-    // console.info('Text:', e.text);
-    // console.info('Trigger:', e.trigger);
-    // e.clearSelection();
 });
+
+// clipboard.on('error', function(e) {
+//     showTip('⚠️ 请先随机生成推荐阅读文章', 3000)
+// });
