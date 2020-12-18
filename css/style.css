@@ -66,6 +66,10 @@ form a:active {
     text-shadow: none;
 }
 
+form #article_bd {
+    transition: 1s;
+}
+
 form input,
 form .article {
     width: calc(100% - 2em);
@@ -97,6 +101,7 @@ form input {
     height: 15px;
 }
 
+form:hover input,
 form:hover .article,
 form:hover .btn {
     opacity: 1;
@@ -329,6 +334,7 @@ form input[type="button"]:active {
     bottom: 0;
     right: 0;
 }
+
 .bottom-menu {
     background: rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(10px);
@@ -348,6 +354,7 @@ form input[type="button"]:active {
     flex-direction: column;
     background-clip: padding-box;
 }
+
 .bottom-menu .sci {
     position: absolute;
     display: flex;
@@ -356,6 +363,7 @@ form input[type="button"]:active {
     flex-direction: row;
     padding-left: 0;
 }
+
 .bottom-menu .sci li {
     margin: 0 10px;
     /*transform: translateY(20px);*/
@@ -372,13 +380,18 @@ form input[type="button"]:active {
     box-shadow: 10px 10px 60px -8px rgba(0, 0, 0, 0.2);
     cursor: pointer;
 }
-.bottom-menu .sci li.checked{
+
+.bottom-menu .sci li.checked {
     opacity: 1;
     transform: translateY(0);
 }
 
 .bottom .bottom-menu .sci li:hover {
-    opacity: 1!important;
+    opacity: 1 !important;
+}
+
+.hidden {
+    display: none!important;
 }
 
 @keyframes minhand {
