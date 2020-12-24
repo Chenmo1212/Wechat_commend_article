@@ -5,8 +5,14 @@
     <meta name="referrer" content="never">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <META HTTP-EQUIV="expires" CONTENT="0">
     <title>推荐阅读生成器</title>
-    <link rel="stylesheet" href="css/style.css">
+<!--    <script type="text/javascript">-->
+<!--        document.write("<l" + "ink rel='stylesheet' href='css/style.css?" + Math.random() + "'>");-->
+<!--    </script>-->
+    <link rel="stylesheet" href="css/style.css?v=1">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
 </head>
 <body>
@@ -48,7 +54,8 @@
 <div class="container">
     <form onsubmit="return false;">
         <h3>🎃 微信公众号【陌尘众享】推荐阅读生成器</h3>
-        <p>写微信推送的时候需要选择推荐阅读，每次重新复制标题、封面图，然后添加超链接挺麻烦的，特此做了一个网站自动生成html代码，然后粘贴到推文里即可。（由于微信官方防止图片盗链，因此可能存在图片无法显示的情况）</p>
+        <p class="text">
+            写微信推送的时候需要选择推荐阅读，每次重新复制标题、封面图，然后添加超链接挺麻烦的，特此做了一个网站自动生成html代码，然后粘贴到推文里即可。（由于微信官方防止图片盗链，因此可能存在图片无法显示的情况）</p>
         <input type="text" id="ipt" placeholder="请粘贴推文的html代码到此处~" onkeydown="clickEnter(event)"/>
         <div id="article_bd">
             <a target="_blank"
@@ -127,6 +134,9 @@
 <!--<script src="js/plugins/core.min.js"></script>-->
 <!--<script src="js/plugins/md5.js"></script>-->
 <script src="js/data.js"></script>
-<script src="js/script.js"></script>
+<script src="js/script.js?v=1"></script>
+<!--<script type="text/javascript">-->
+<!--    document.write("<s" + "cript type='text/javascript' src='js/script.js?" + Math.random() + "'></s" + "cript>");-->
+<!--</script>-->
 </body>
 </html>

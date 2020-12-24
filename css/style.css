@@ -1,13 +1,11 @@
 body {
     height: 100vh;
     font-family: 'Montserrat', sans-serif;
-    margin: 0;
-    padding: 0;
     overflow: hidden;
     transition: background-color 0.5s;
 }
 
-html {
+html, body, ul, li {
     margin: 0;
     padding: 0;
 }
@@ -15,10 +13,11 @@ html {
 .container {
     position: absolute;
     width: 50%;
-    /*-webkit-transform: translate(-50%, -50%);*/
-    transform: translateY(-50%);
+    transform: translate(-50%, -50%);
+    /*transform: translateY(-50%);*/
     top: 50%;
-    left: 25%;
+    left: 50%;
+    /*left: 25%;*/
 }
 
 form {
@@ -48,6 +47,7 @@ form p {
 form h3 {
     opacity: 0.8;
     font-size: 1.4rem;
+    margin-top: 0;
 }
 
 form p {
@@ -109,6 +109,10 @@ form:hover .btn {
 
 form .article .left {
     max-width: 65%;
+}
+
+form .article .title,
+form .article .digest {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -270,15 +274,15 @@ form input[type="button"]:active {
 .drop-2 {
     height: 80px;
     width: 80px;
-    bottom: -30px;
-    right: -10px;
+    bottom: -60px;
+    right: 200px;
     animation: move-top-bottom 5s infinite;
 }
 
 .drop-3 {
     height: 100px;
     width: 100px;
-    bottom: 120px;
+    bottom: 220px;
     right: -50px;
     z-index: -1;
     animation: move-left-right 6s infinite;
@@ -484,5 +488,149 @@ form input[type="button"]:active {
     100% {
         opacity: 0;
         transform: translateY(-25px);
+    }
+}
+
+
+@media screen and (orientation: portrait) {
+    /*竖屏 css*/
+}
+
+@media screen and (orientation: landscape) {
+    /*横屏 css*/
+
+}
+
+@media screen and (min-width: 1366px) {
+    /*pc端 css*/
+    .container {
+        width: 50%;
+    }
+}
+
+/*iphone 5/5s/5se */
+@media screen and (max-width: 569px) {
+}
+
+/*iphone 6/7/8 */
+@media screen and (min-width: 375px) and (max-width: 668px) {
+    .container {
+        top: 40%;
+    }
+    .bottom-menu {
+        width: 80px;
+        padding: 1.7em;
+    }
+    .bottom-menu .sci li {
+        padding: 0.6em;
+    }
+}
+
+/*iphone 6p/7p/8p */
+@media screen and (min-width: 668px) and (max-width: 737px) {
+}
+
+/*iphone x */
+@media screen and (max-width: 813px) {
+    #tip-container {
+        right: 10px;
+        top: 10px;
+    }
+    .tip {
+        padding: 0.5em;
+    }
+    .container {
+        width: 90%;
+    }
+
+    form {
+        padding: 1em;
+        width: calc(100% - 2em);
+    }
+
+    form input, form .article {
+        width: calc(100% - 1em);
+        padding: 0.5em;
+        margin-top: 1em;
+    }
+    form .btn {
+        margin-top: 1em;
+    }
+
+    form .text {
+        display: none;
+    }
+
+    .drop-1 {
+        height: 40px;
+        width: 40px;
+        left: 0;
+    }
+
+    .drop-2 {
+        height: 40px;
+        width: 40px;
+        bottom: -40px;
+        right: 270px;
+    }
+
+    .drop-3 {
+        height: 50px;
+        width: 50px;
+        right: -10px;
+    }
+
+    .drop-4 {
+        top: -100px;
+        right: -10px;
+        height: 60px;
+        width: 60px;
+    }
+
+    .bottom {
+        width: 100%;
+    }
+
+    .bottom-menu {
+        transform: translate(-50%, 0%);
+        left: 50%;
+        margin: 0;
+        bottom: 10px;
+    }
+}
+
+/*ipad 竖屏*/
+@media screen and (min-width: 768px) and (max-width: 1025px) and (orientation: portrait) {
+    .container {
+        width: 80%;
+    }
+}
+/*ipad 横屏*/
+@media screen and (min-width: 768px) and (max-width: 1025px) and (orientation: landscape) {
+    .drop-2 {
+        height: 40px;
+        width: 40px;
+        bottom: -20px;
+    }
+    form {
+        padding: 1em;
+        width: calc(100% - 2em);
+    }
+    form input, form .article {
+        margin-top: 1em;
+    }
+    form .btn {
+        margin-top: 1em;
+    }
+    form input, form .article {
+        width: calc(100% - 1em);
+        padding: 0.5em;
+    }
+}
+
+/*ipad pro*/
+@media screen and (min-width: 1024px) and (max-width: 1366px) {
+    .container {
+        width: 70%;
     }
 }
